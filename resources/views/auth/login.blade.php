@@ -11,6 +11,13 @@
         </div>
     @endif
 
+    @if(session()->has('message3'))
+    <div class="alert alert-success"> 
+        {{ session()->get('message3') }}
+    </div> 
+@endif 
+
+
     <div class="login-box">
         <div class="login-logo">
             <a href="{{route('dashboard')}}"><b>Admin</b>LTE</a>

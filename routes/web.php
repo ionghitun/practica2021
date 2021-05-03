@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('login'); 
 });
 
 Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
+
+
 Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
+
+
+
 Route::post('/logout', [AuthController::class, 'logout']);
 
 //forgot password
@@ -29,3 +39,8 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 });
+
+
+
+//  Route::get('/verification','AuthController@verificareUser')->name('verificare.User');
+ Route::get('/verification', [AuthController::class, 'verificareUser'])->name('verificare.User');
